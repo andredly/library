@@ -1,4 +1,4 @@
-package app.library;
+package app.library.repository;
 
 import static org.junit.Assert.assertTrue;
 

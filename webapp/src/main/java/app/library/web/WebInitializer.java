@@ -1,8 +1,9 @@
 package app.library.web;
 
+import app.library.services.config.Config;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MyWebInitializer extends
+public class WebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
@@ -12,7 +13,7 @@ public class MyWebInitializer extends
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class[]{WebConfig.class, Config.class};
     }
 
     @Override

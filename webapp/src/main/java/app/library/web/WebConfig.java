@@ -2,9 +2,11 @@ package app.library.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -15,7 +17,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"app.library.web"})
+@ComponentScan(basePackages = {"app.library.web", "app.library.services.config"})
 public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -32,6 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         return templateResolver;
     }
+
 
     @Bean
     public SpringTemplateEngine templateEngine() {
