@@ -134,7 +134,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public void delete(Long id) {
-        String sql = "DELETE FROM users WHERE id=?";
-        jdbcTemplate.update(sql, id);
+//        String sql = "DELETE FROM users WHERE id=?";
+        String sql = "WITH ins AS (\n" +
+                "    DELETE FROM user_role WHERE user_role.user_id = ?)\n" +
+                "DELETE FROM users WHERE users.id = ?";
+        jdbcTemplate.update(sql, id, id);
     }
 }

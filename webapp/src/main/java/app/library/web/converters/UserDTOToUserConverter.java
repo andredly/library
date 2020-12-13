@@ -15,6 +15,7 @@ public class UserDTOToUserConverter implements Converter<UserDTO, User> {
         User user = new User();
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
         Set<Role> roles = userDTO.getRoles().stream()
                 .map(role -> new RoleDTOToRoleConverter().convert(role))
                 .collect(Collectors.toSet());

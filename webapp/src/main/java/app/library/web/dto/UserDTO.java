@@ -8,6 +8,7 @@ public class UserDTO {
 
     private String name;
     private String email;
+    private String password;
 
     private Set<RoleDTO> roles = new HashSet<>();
 
@@ -16,12 +17,12 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO userDTO = (UserDTO) o;
-        return Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(roles, userDTO.roles);
+        return Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(password, userDTO.password) && Objects.equals(roles, userDTO.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, roles);
+        return Objects.hash(name, email, password, roles);
     }
 
     public String getName() {
@@ -38,6 +39,14 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<RoleDTO> getRoles() {

@@ -1,5 +1,6 @@
 package app.library.services.config;
 
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -34,6 +35,14 @@ public class Config {
         dataSource.setSchema(env.getProperty("jdbc.schema"));
         dataSource.setDriverClassName(env.getProperty("jdbc.driver"));
         return dataSource;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
+        liquibase.setDataSource(getDataSource());
+        return liquibase;
     }
 
     @Bean
