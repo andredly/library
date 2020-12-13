@@ -1,11 +1,16 @@
 package app.library.services.service;
 
 import app.library.repository.dao.UserRepository;
+import app.library.repository.entity.Role;
 import app.library.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import static app.library.repository.entity.RoleType.ROLE_USER;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,9 +22,14 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
-    public void save(User user) throws Exception {
+    public void save(User user) {
         if (user.getName().length() < 2) {
-            throw new Exception();
+            throw new IllegalArgumentException();
+        }
+        Set<Role> roles =  user.getRoles();
+        if(roles.isEmpty()) {
+            Role role = new Role();
+            role.setRoleType(ROLE_USER);
         }
         userDao.save(user);
     }

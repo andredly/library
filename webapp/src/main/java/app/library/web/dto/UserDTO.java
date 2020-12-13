@@ -1,41 +1,27 @@
-package app.library.repository.entity;
+package app.library.web.dto;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class User {
-
-    private Long id;
+public class UserDTO {
 
     private String name;
     private String email;
 
-    private Set<Role> roles = new HashSet<>();;
-
-
-    public User() {
-    }
+    private Set<RoleDTO> roles = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(roles, user.roles);
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(name, userDTO.name) && Objects.equals(email, userDTO.email) && Objects.equals(roles, userDTO.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, roles);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return Objects.hash(name, email, roles);
     }
 
     public String getName() {
@@ -54,11 +40,11 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
 }
